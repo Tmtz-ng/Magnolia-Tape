@@ -1,0 +1,612 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+     --color-wblack: #080808e0;
+    --color-black: #000000;
+    --color-cream: #ffeab0;
+    --color-green: #153000;
+    --color-blue: #82BEDF;
+    --color-whatsapp: #25D366;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-black);
+    color: var(--color-cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: var(--color-wblack);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.header-logo {
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.header-logo:hover {
+    opacity: 0.8;
+}
+
+.header-logo img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.header-nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.header-nav a {
+    color: var(--color-cream);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.header-nav a:hover {
+    color: var(--color-blue);
+    opacity: 0.9;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-black);
+    position: relative;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.hero-logo {
+    max-width: 80%;
+    width: 600px;
+    height: auto;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.hero-logo.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.hero-tagline {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 300;
+    color: var(--color-cream);
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    transition: opacity 0.4s ease;
+}
+
+.hero-logo.hidden + .hero-tagline {
+    opacity: 0;
+}
+
+.section {
+    padding: 120px 0;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    will-change: transform, opacity;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 500;
+    margin-bottom: 60px;
+    color: var(--color-cream);
+    text-align: center;
+}
+
+.section-what {
+    background-color: var(--color-black);
+}
+
+.section-logo-img {
+    width: 300px;
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.section-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 400;
+    color: var(--color-cream);
+    opacity: 0.8;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.what-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.what-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 24px;
+    color: var(--color-cream);
+    opacity: 0.9;
+}
+
+.what-text:last-child {
+    margin-bottom: 0;
+}
+
+.section-who {
+    background-color: var(--color-green);
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--color-cream);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.member-photo--kynnu {
+    background-image: url('/imagens/Socios/Kynnu.jpg');
+}
+
+.member-photo--ohara {
+    background-image: url('/imagens/Socios/Ohara.jpg');
+}
+
+.member-photo--woreraa {
+    background-image: url('/imagens/Socios/Worera.jpg');
+}
+
+.team-member:hover .member-photo {
+    opacity: 0.6;
+}
+
+.team-member.expanded .member-photo {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.member-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    text-align: center;
+    transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+}
+
+.team-member.expanded .member-details {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 24px;
+}
+
+.member-name {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--color-cream);
+    margin-bottom: 8px;
+}
+
+.member-instagram {
+    display: inline-block;
+    font-size: 1rem;
+    color: var(--color-blue);
+    text-decoration: none;
+    margin-bottom: 16px;
+    transition: opacity 0.3s ease;
+}
+
+.member-instagram:hover {
+    opacity: 0.7;
+}
+
+.member-bio {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-cream);
+    opacity: 0.85;
+    max-width: 280px;
+}
+
+.section-arts {
+    background-color: var(--color-black);
+}
+
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    flex: 1;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    padding: 0 10px;
+}
+
+.art-image {
+    width: 100%;
+    height: 480px;
+    object-fit: contain;
+    border-radius: 12px;
+    display: block;
+}
+
+.carousel-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--color-cream);
+    background: transparent;
+    color: var(--color-cream);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+    background-color: var(--color-cream);
+    color: var(--color-black);
+    transform: scale(1.1);
+}
+
+.carousel-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-cream);
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-dot:hover {
+    opacity: 0.6;
+}
+
+.carousel-dot.active {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.section-cta {
+    background-color: var(--color-cream);
+    padding: 100px 0;
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: 16px;
+}
+
+.cta-text {
+    font-size: 1.1rem;
+    color: var(--color-black);
+    margin-bottom: 40px;
+    line-height: 1.7;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 40px;
+    background-color: var(--color-whatsapp);
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.footer {
+    background-color: var(--color-wblack);
+    padding: 80px 0 40px;
+    border-top: 1px solid rgba(252, 255, 176, 0.1);
+}
+
+.footer-content {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.footer-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    color: var(--color-cream);
+    margin-bottom: 40px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-cream);
+    text-decoration: none;
+    font-size: 1rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover {
+    opacity: 1;
+    color: var(--color-blue);
+    transform: translateY(-2px);
+}
+
+.social-link svg {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(252, 255, 176, 0.1);
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    color: var(--color-cream);
+    opacity: 0.6;
+    margin-bottom: 8px;
+}
+
+.footer-dev {
+    font-size: 0.85rem;
+    opacity: 0.5;
+}
+.a-footer-dev {
+    color: var(--color-cream);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 20px;
+    }
+
+    .header-logo img {
+        height: 40px;
+    }
+
+    .header-nav {
+        gap: 15px;
+    }
+
+    .header-nav a {
+        font-size: 0.85rem;
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .team-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .member-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .art-image {
+        height: 320px;
+        object-fit: contain;
+    }
+
+    .social-links {
+        gap: 20px;
+    }
+
+    .social-link {
+        font-size: 0.9rem;
+    }
+
+    .social-link svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-nav {
+        display: none;
+    }
+
+    .hero-logo {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .hero-tagline {
+        font-size: 0.85rem;
+        padding: 0 20px;
+    }
+
+    .section-logo-img {
+        width: 200px;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 40px;
+    }
+
+    .member-photo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .member-name {
+        font-size: 1.5rem;
+    }
+
+    .carousel-wrapper {
+        gap: 10px;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .art-image {
+        height: 260px;
+        object-fit: contain;
+    }
+
+    .cta-button {
+        padding: 16px 30px;
+        font-size: 1rem;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+}

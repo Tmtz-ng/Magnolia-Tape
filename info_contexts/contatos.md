@@ -1,0 +1,8 @@
+whatsapp "12 98212-4130"
+instagram "instagram.com/magnolia.tape"
+X(twiiter)"x.com/magnolia_tape"
+Tiktok "tiktok.com/@magnolia.tape"
+YouTube "youtube.com/@magnóliatape"
+Kynnu"@kynnu._"
+Ohara"@ohr.drw"
+Woreraa"@woreraa_"
