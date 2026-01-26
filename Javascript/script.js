@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroLogo = document.getElementById('hero-logo');
     const hero = document.getElementById('hero');
     const sections = document.querySelectorAll('.section');
-    let lastScrollY = window.scrollY;
     let ticking = false;
 
     function handleHeaderScroll() {
@@ -21,50 +20,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function handleParallaxScroll() {
-        const scrollY = window.scrollY;
-        const viewportHeight = window.innerHeight;
-        const scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
-
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            const sectionTop = rect.top;
+    // Otimização: usar IntersectionObserver ao invés de getBoundingClientRect em loop
+    // Usa classes CSS ao invés de manipular style inline
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const section = entry.target;
+            const rect = entry.boundingClientRect;
+            const viewportHeight = window.innerHeight;
             const sectionHeight = rect.height;
-
-            let progress;
+            const sectionTop = rect.top;
+            
+            // Remove todas as classes de parallax
+            section.classList.remove('parallax-visible', 'parallax-partial', 'parallax-below', 'parallax-above');
+            
             if (sectionTop >= viewportHeight) {
-                progress = 0;
+                // Section abaixo da viewport
+                section.classList.add('parallax-below');
             } else if (sectionTop <= -sectionHeight) {
-                progress = 0;
-            } else if (sectionTop <= 0 && sectionTop >= -sectionHeight) {
-                progress = 1 - Math.abs(sectionTop) / sectionHeight;
-            } else {
-                progress = 1 - (sectionTop / viewportHeight);
+                // Section acima da viewport
+                section.classList.add('parallax-above');
+            } else if (entry.intersectionRatio > 0.7) {
+                // Section bem visível
+                section.classList.add('parallax-visible');
+            } else if (entry.intersectionRatio > 0) {
+                // Section parcialmente visível
+                section.classList.add('parallax-partial');
             }
-
-            progress = Math.max(0, Math.min(1, progress));
-
-            const opacity = 0.3 + (progress * 0.8);
-            let translateY;
-
-            if (sectionTop > 0) {
-                translateY = (1 - progress) * 50;
-            } else {
-                translateY = -((1 - progress) * 40);
-            }
-
-            section.style.opacity = opacity;
-            section.style.transform = `translateY(${translateY}px)`;
         });
+    }, {
+        rootMargin: '100px 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+    });
 
-        lastScrollY = scrollY;
-    }
+    // Observa todas as sections
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
 
     function onScroll() {
         if (!ticking) {
             window.requestAnimationFrame(function() {
                 handleHeaderScroll();
-                handleParallaxScroll();
                 ticking = false;
             });
             ticking = true;
@@ -74,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', onScroll, { passive: true });
 
     handleHeaderScroll();
-    handleParallaxScroll();
 
     headerLogo.addEventListener('click', function(e) {
         e.preventDefault();
@@ -85,18 +80,39 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const teamMembers = document.querySelectorAll('.team-member');
+    
+    function toggleMember(member) {
+        if (member.querySelector('.member-instagram')?.contains(document.activeElement)) {
+            return;
+        }
+        
+        const isExpanded = member.classList.contains('expanded');
+        
+        teamMembers.forEach(m => {
+            m.classList.remove('expanded');
+            m.setAttribute('aria-expanded', 'false');
+        });
+        
+        if (!isExpanded) {
+            member.classList.add('expanded');
+            member.setAttribute('aria-expanded', 'true');
+        }
+    }
+
     teamMembers.forEach(member => {
+        // Suporte a clique
         member.addEventListener('click', function(e) {
             if (e.target.closest('.member-instagram')) {
                 return;
             }
-            
-            const isExpanded = this.classList.contains('expanded');
-            
-            teamMembers.forEach(m => m.classList.remove('expanded'));
-            
-            if (!isExpanded) {
-                this.classList.add('expanded');
+            toggleMember(this);
+        });
+
+        // Suporte a teclado (Enter e Space)
+        member.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMember(this);
             }
         });
     });
@@ -146,15 +162,25 @@ document.addEventListener('DOMContentLoaded', function() {
     nextBtn.addEventListener('click', nextSlide);
     prevBtn.addEventListener('click', prevSlide);
 
-    let autoplayInterval = setInterval(nextSlide, 5000);
+    // Respeitar prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let autoplayInterval = null;
+
+    if (!prefersReducedMotion) {
+        autoplayInterval = setInterval(nextSlide, 5000);
+    }
 
     const carouselWrapper = document.querySelector('.carousel-wrapper');
-    carouselWrapper.addEventListener('mouseenter', () => {
-        clearInterval(autoplayInterval);
-    });
-    carouselWrapper.addEventListener('mouseleave', () => {
-        autoplayInterval = setInterval(nextSlide, 5000);
-    });
+    if (autoplayInterval) {
+        carouselWrapper.addEventListener('mouseenter', () => {
+            clearInterval(autoplayInterval);
+        });
+        carouselWrapper.addEventListener('mouseleave', () => {
+            if (!prefersReducedMotion) {
+                autoplayInterval = setInterval(nextSlide, 5000);
+            }
+        });
+    }
 
     let touchStartX = 0;
     let touchEndX = 0;

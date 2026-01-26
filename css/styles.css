@@ -5,7 +5,7 @@
 }
 
 :root {
-     --color-wblack: #080808e0;
+    --color-wblack: #080808e0;
     --color-black: #000000;
     --color-cream: #ffeab0;
     --color-green: #153000;
@@ -24,7 +24,7 @@ body {
     background-color: var(--color-black);
     color: var(--color-cream);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 .container {
@@ -120,7 +120,7 @@ body {
     font-size: clamp(0.9rem, 2vw, 1.1rem);
     font-weight: 300;
     color: var(--color-cream);
-    opacity: 0.7;
+    opacity: 0.8;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-align: center;
@@ -134,7 +134,29 @@ body {
 .section {
     padding: 120px 0;
     transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-    will-change: transform, opacity;
+    scroll-margin-top: 90px;
+    opacity: 0.3;
+    transform: translateY(50px);
+}
+
+.section.parallax-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section.parallax-partial {
+    opacity: 0.65;
+    transform: translateY(25px);
+}
+
+.section.parallax-below {
+    opacity: 0.3;
+    transform: translateY(50px);
+}
+
+.section.parallax-above {
+    opacity: 0.3;
+    transform: translateY(-40px);
 }
 
 .section-title {
@@ -213,24 +235,9 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-color: var(--color-cream);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    object-fit: cover;
     opacity: 0.4;
     transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.member-photo--kynnu {
-    background-image: url('/imagens/Socios/Kynnu.jpg');
-}
-
-.member-photo--ohara {
-    background-image: url('/imagens/Socios/Ohara.jpg');
-}
-
-.member-photo--woreraa {
-    background-image: url('/imagens/Socios/Worera.jpg');
 }
 
 .team-member:hover .member-photo {
@@ -478,17 +485,16 @@ body {
 .footer-bottom p {
     font-size: 0.9rem;
     color: var(--color-cream);
-    opacity: 0.6;
+    opacity: 0.7;
     margin-bottom: 8px;
 }
 
 .footer-dev {
     font-size: 0.85rem;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 .a-footer-dev {
     color: var(--color-cream);
-    text-decoration: none;
     transition: opacity 0.3s ease;
 }
 
