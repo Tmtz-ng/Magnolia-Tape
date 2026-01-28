@@ -1,130 +1,60 @@
-# 🌸 Magnolia Tape
+# Magnolia Tape 🌿
 
-A **Magnolia Tape** é um projeto artístico e criativo que atua na interseção entre  
-🎨 **arte digital**, 🧵 **artesanato** e 🎵 **música**.
+Site institucional desenvolvido para a **Magnolia Tape**, uma empresa criativa focada em design e artes visuais.  
+O objetivo do projeto foi criar uma presença digital limpa, elegante e funcional, valorizando a identidade da marca e facilitando o contato com clientes.
 
-Mais do que produtos, o projeto busca criar **experiências artísticas com identidade**, sensibilidade e propósito, explorando diferentes formatos e mídias ao longo do tempo.
-
----
-
-## 🧠 Visão do projeto
-
-A Magnolia Tape foi pensada para crescer de forma **orgânica**, respeitando o tempo criativo e a construção de identidade.  
-Por isso, o projeto é dividido em **3 fases principais**:
-
-1. **Início / Esboço**
-2. **Corpo / Estrutura**
-3. **Produto / Venda**
-
-Cada fase representa um estágio claro de maturidade do projeto.
+🔗 **Site no ar:** https://magnoliatape.netlify.app/
 
 ---
 
-## 🌱 FASE 1 — INÍCIO / ESBOÇO (ATUAL)
+## 🧠 Sobre o projeto
 
-**Objetivo:**  
-Criar presença, identidade e narrativa.
+Este projeto foi pensado e desenvolvido do zero, desde a estrutura até o visual final, com foco em:
 
-### Características:
-- Landing page institucional
-- Conteúdo conceitual
-- Projeto front-end simples
-- Sem foco em venda
-- Ênfase em identidade artística
+- Clareza na comunicação
+- Experiência do usuário (UX)
+- Organização visual (UI)
+- Performance e SEO básico
 
-### O que existe nesta fase:
-- Página única (landing page)
-- Seções:  
-  - O que somos  
-  - Quem somos  
-  - Projetos (em desenvolvimento)  
-  - Contato
-- Deploy público (Netlify)
-
-📌 Esta fase funciona como um **cartão de visita artístico** do projeto.
+Não há backend ou sistema de autenticação, pois o site tem caráter institucional e de portfólio.
 
 ---
 
-## 🌿 FASE 2 — CORPO / ESTRUTURA (EM PLANEJAMENTO)
+## ✨ Funcionalidades
 
-**Objetivo:**  
-Transformar o conceito em algo explorável e consistente.
-
-### Evoluções previstas:
-- Projetos artísticos reais publicados
-- Melhor organização visual e narrativa
-- Conteúdo com função (portfólio / catálogo)
-- Estrutura mais sólida do site
-
-### Possíveis recursos:
-- Páginas individuais de projetos
-- Galeria de arte / música
-- SEO básico
-- Métricas e analytics
-- Expansão da identidade visual
-
-📌 Nesta fase, a Magnolia Tape deixa de ser apenas uma ideia  
-e se torna uma **marca em construção ativa**.
-
----
-
-## 🌸 FASE 3 — PRODUTO / VENDA (FUTURO)
-
-**Objetivo:**  
-Converter atenção em valor e sustentabilidade.
-
-### Possibilidades:
-- Venda de produtos digitais ou físicos
-- Lançamentos musicais ou artísticos
-- Landing pages específicas para campanhas
-- Captação de leads
-- Integração com plataformas externas
-
-📌 Aqui o projeto atinge maturidade comercial  
-sem perder sua identidade artística.
-
----
-
-## 👥 Quem faz a Magnolia Tape
-
-- **Kynnu** — Artista multidisciplinar, compositor, escritor, cantor e profissional de marketing.  
-  Pilar do entretenimento audiovisual e da identidade criativa.
-- **Dani Ohara** — Direção criativa e artística.
-- **João Moreira** — Estruturação e desenvolvimento do projeto.
+- Layout responsivo (desktop e mobile)
+- Animações básicas para melhorar a experiência visual
+- SEO básico (head estruturado, metatags e preview para redes sociais)
+- Conteúdo organizado de forma semântica
+- Integração com links externos (contato/redes sociais)
 
 ---
 
 ## 🛠️ Tecnologias utilizadas
 
-Variam conforme o projeto e a fase, incluindo:
-
-- HTML5
-- CSS3
-- JavaScript
-- Ferramentas de design digital
-- Plataformas de deploy (Netlify, GitHub Pages)
+- **HTML5**
+- **CSS3**
+- **JavaScript**
+- **Netlify** (deploy e hospedagem)
+- **Git & GitHub** (versionamento)
 
 ---
 
-## 📌 Status do projeto
+## 🎨 Design & Conteúdo
 
-🚧 **Em desenvolvimento contínuo**  
-Atualmente na **Fase 1 — Início / Esboço**.
-
----
-
-## 🔗 Links
-
-- 🌐 Landing page: https://magnoliatape.netlify.app/
-- 📸 Instagram: https://www.instagram.com/magnolia.tape
+- Estrutura e design definidos manualmente
+- Aplicação de princípios básicos de UI e UX
+- Textos fornecidos pelo cliente, com edição e adaptação para web
 
 ---
 
-## 📜 Licença
+## 🚀 Deploy
 
-Projeto autoral e artístico da **Magnolia Tape**.  
-Todo o conteúdo é protegido. Não reutilizar ou distribuir sem autorização.
+O projeto foi publicado utilizando o Netlify.
 
 ---
 
-🌸 *Magnolia Tape — arte que cresce em fases.*
+## 📄 Licença
+
+Este projeto foi desenvolvido para fins comerciais e de portfólio.  
+O código pode ser usado como referência, respeitando os direitos da marca Magnolia Tape.
